@@ -1,13 +1,31 @@
+<html>
+<head>
+
+</head>
+
+<body>
+
+<h1>DOBRODOŠLI U KNJIŽARU</h1>
+<h3>ODABERITE KATEGORIJU:</h3>
+
 <?php
-include ('funkcije.php');
+include ('klasa.php');
 
 session_start();
 
-echo "<p>Odaberite kategroiju:</p>";
 // dohvati kategorije iz baze
-$k=dohvati_kategorije();
-// prikaži kategorije
-echo $k;
+$k=new baza();
+$k->query("SELECT * FROM kategorije");
+$kategorije=$k->dohvati();
 
+echo "<pre>";
+print_r($kategorije);
+echo "</pre>";
 
+foreach ($kategorije as $key => $value) {
+	echo '<a href="kategorije.php?id='.$value->br_kategorije.'"> '.$value->naziv_kategorije.' |</a>';
+}
 ?>
+"></a>
+</body>
+</html>

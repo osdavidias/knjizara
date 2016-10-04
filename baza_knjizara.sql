@@ -24,6 +24,8 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 -- Dumping data for table knjizara.admin: ~0 rows (approximately)
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` (`username`, `password`) VALUES
+	('pero', '123');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 
 
@@ -32,25 +34,34 @@ CREATE TABLE IF NOT EXISTS `kategorije` (
   `br_kategorije` int(11) NOT NULL AUTO_INCREMENT,
   `naziv_kategorije` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`br_kategorije`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table knjizara.kategorije: ~0 rows (approximately)
+-- Dumping data for table knjizara.kategorije: ~1 rows (approximately)
 /*!40000 ALTER TABLE `kategorije` DISABLE KEYS */;
+INSERT INTO `kategorije` (`br_kategorije`, `naziv_kategorije`) VALUES
+	(1, 'Poezija'),
+	(3, 'Znanstvena fantastika');
 /*!40000 ALTER TABLE `kategorije` ENABLE KEYS */;
 
 
 -- Dumping structure for table knjizara.knjige
 CREATE TABLE IF NOT EXISTS `knjige` (
   `br_knjige` int(11) NOT NULL,
+  `br_kategorije` int(11) NOT NULL,
   `autor` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `naslov` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `cijena` decimal(10,2) NOT NULL,
   `opis` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`br_knjige`)
+  `godina_izdanja` int(11) NOT NULL,
+  PRIMARY KEY (`br_knjige`),
+  KEY `br_kategorije` (`br_kategorije`),
+  CONSTRAINT `FK_knjige_kategorije` FOREIGN KEY (`br_kategorije`) REFERENCES `kategorije` (`br_kategorije`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table knjizara.knjige: ~0 rows (approximately)
 /*!40000 ALTER TABLE `knjige` DISABLE KEYS */;
+INSERT INTO `knjige` (`br_knjige`, `br_kategorije`, `autor`, `naslov`, `cijena`, `opis`, `godina_izdanja`) VALUES
+	(1, 1, 'Dobriša Cesarić', 'Voćka Poslije Kiše', 77.45, 'Poezija Dobriše Cesarića', 1978);
 /*!40000 ALTER TABLE `knjige` ENABLE KEYS */;
 
 
