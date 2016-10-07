@@ -63,7 +63,31 @@ return $this->stmt->fetchAll(PDO::FETCH_OBJ);
 }// kraj dohvati
 
 
-}// kraj klase
+}// kraj klase baza
+
+class zaglavlje {
+private $poruka;
+private $linkovi;
+
+function __construct($p)
+// poruka za zaglavlje:
+{
+    $this->poruka=$p;
+    echo "<h1>".$this->poruka."</h1>";
+}
+
+//linkovi:
+function linkovi ($l){
+$this->linkovi=func_get_args($l);
+
+foreach ($this->linkovi as $key => $value) {
+    echo '<a href="'.$value.'"> '.$value.' |</a>';
+}
+}
+
+}// kraj klase zaglavlje
+
+
 
 
 

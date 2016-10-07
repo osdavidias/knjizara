@@ -4,14 +4,18 @@
 </head>
 
 <body>
+<?php
+session_start();
+include ('klasa.php');
+$z=new zaglavlje("DOBRODOŠLI U KNJIŽARU");
+$z->linkovi("registracija.php", "login.php");
+?>
 
-<h1>DOBRODOŠLI U KNJIŽARU</h1>
 <h3>ODABERITE KATEGORIJU:</h3>
 
 <?php
-include ('klasa.php');
 
-session_start();
+
 
 // dohvati kategorije iz baze
 $k=new baza();
@@ -26,6 +30,6 @@ foreach ($kategorije as $key => $value) {
 	echo '<a href="kategorije.php?id='.$value->br_kategorije.'"> '.$value->naziv_kategorije.' |</a>';
 }
 ?>
-"></a>
+
 </body>
 </html>
