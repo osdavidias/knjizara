@@ -70,8 +70,47 @@ Potvrdi lozinku:<br>
 
 <br><input type="submit" name="dugme" value="Pošalji">
 
+<?php
+if (isset($_POST["dugme"])) {
 
 
+
+$ime=$_POST["ime"];
+$prezime=$_POST["prezime"];
+$adresa=$_POST["adresa"];
+$post_broj=$_POST["post_broj"];
+$mjesto=$_POST["mjesto"];
+$telefon=$_POST["telefon"];
+$mail=$_POST["mail"];
+$username=$_POST["username"];
+$password=$_POST["password"];
+$potvrda=$_POST["potvrda"];
+
+$b=new baza();
+$b->query("SELECT * FROM kupci WHERE username LIKE :u OR email LIKE :e ");
+$b->bind(":u", $username);
+$b->bind(":e", $mail);
+$r=$b->dohvati();
+
+if ($r) {
+  echo "<br> <b>KORISNIČKO IME ILI EMAIL ADRESA VEĆ SU REGISTRIRANI!</b>";
+}
+
+// provjera jesu li svi podaci unešeni i potvrda lozinke:
+$provjera=new provjera();
+if ($provjera->nije_prazno($ime, $prezime, $adresa, $post_broj, $mjesto, $telefon, $mail, $username, $password, $potvrda)
+	!=="prazno" AND $provjera->potvrdi($password, $potvrda)=="isto" AND !($r)) {
+	echo '<br> <b>Podaci uspješno unijeti</b>';
+}
+
+else
+{
+	echo "<br> <b>Niste dobro unijeli lozinku ili neko od traženih polja</b>";
+}
+
+
+}// kraj if isset dugme
+?>
 
 </body>
 

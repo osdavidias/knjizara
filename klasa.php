@@ -88,7 +88,41 @@ foreach ($this->linkovi as $key => $value) {
 }// kraj klase zaglavlje
 
 
+class provjera 
+// provjerava unos polja i potvrdu lozinke
+{
+private $parametri; 
+private $lozinka;
+private $potvrda;
 
+function nije_prazno()
+// provjera popunjenosti podataka
+{
+ 
+ 
+  $this->parametri=func_get_args();
+  foreach ($this->parametri as $key => $value) {
+    if (empty($value)) {
+      return "prazno";
+    }
+
+  }
+}
+
+function potvrdi ($a, $b)
+// provjera lozinke
+{
+   $this->lozinka=$a;
+   $this->potvrda=$b; 
+if ($this->potvrda==$this->lozinka) {
+    return "isto";
+}
+
+}
+
+
+
+}// kraj klase provjera
 
 
 ?>
