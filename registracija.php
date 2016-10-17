@@ -100,6 +100,24 @@ if ($r) {
 $provjera=new provjera();
 if ($provjera->nije_prazno($ime, $prezime, $adresa, $post_broj, $mjesto, $telefon, $mail, $username, $password, $potvrda)
 	!=="prazno" AND $provjera->potvrdi($password, $potvrda)=="isto" AND !($r)) {
+	$password=md5($password);
+    
+ // unos podataka:
+ $unos=new baza();
+ $unos->query('INSERT INTO kupci(ime, prezime, grad, adresa, post_br, username, password, email, telefon)
+ 	VALUES (:ime, :prezime, :grad, :adresa, :post_br, :username, :password, :email, :telefon)'); 
+ $unos->bind(":ime", $ime);
+ $unos->bind(":prezime", $prezime);
+ $unos->bind(":adresa", $adresa);
+ $unos->bind(":grad", $mjesto);
+ $unos->bind(":post_br", $post_broj);
+ $unos->bind(":username", $username);
+ $unos->bind(":password", $password);
+ $unos->bind(":email", $mail);
+ $unos->bind(":telefon", $telefon);
+ $unos->execute();
+
+
 	echo '<br> <b>Podaci uspješno unijeti</b>';
 }
 

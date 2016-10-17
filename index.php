@@ -29,6 +29,10 @@ echo "</pre>";
 foreach ($kategorije as $key => $value) {
 	echo '<a href="kategorije.php?id='.$value->br_kategorije.'"> '.$value->naziv_kategorije.' |</a>';
 }
+
+$knjige=new baza();
+$knjige->query("SELECT * FROM knjige ORDER BY dodano LIMIT 6");
+$rez=$knjige->dohvati();
 ?>
 
 </body>
