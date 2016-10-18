@@ -124,5 +124,36 @@ if ($this->potvrda==$this->lozinka) {
 
 }// kraj klase provjera
 
+/*
+$to = $mail;
+$subject = "Dobrodošli u web shop!";
+$txt = "Dobrodošli u naš web shop. Želimo vam ugodnu kupovinu.";
+$from = "From: Web Shop <webshop@webshop.hr>";
+mail($to, $subject, $txt, $from);
+*/
+
+class mail{
+private $to;
+private $subject;
+private $txt;
+private $from;
+
+function __construct($t, $s, $te, $f)
+{
+$this->to=$t;
+$this->subject=$s;
+$this->txt=$te;
+$this->from=$f;
+
+}
+
+function posalji () 
+{
+mail($this->to, $this->subject, $this->text, $this->from);
+
+}
+
+}// kraj klase mail
+
 
 ?>

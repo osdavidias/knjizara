@@ -117,6 +117,10 @@ if ($provjera->nije_prazno($ime, $prezime, $adresa, $post_broj, $mjesto, $telefo
  $unos->bind(":telefon", $telefon);
  $unos->execute();
 
+// slanje maila:
+ $posta=new mail($mail, "Dobrodošli u Knjižaru!", "Dobrodošli u našu knjižaru. Želimo vam ugodnu kupovinu i čitanje.",
+ 	"From: Knjižara <knjizara@knjizara.hr>");
+ $posta->posalji();
 
 	echo '<br> <b>Podaci uspješno unijeti</b>';
 }
