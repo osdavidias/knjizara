@@ -81,7 +81,8 @@ function linkovi ($l){
 $this->linkovi=func_get_args($l);
 
 foreach ($this->linkovi as $key => $value) {
-    echo '<a href="'.$value.'"> '.$value.' |</a>';
+    $link=explode(".", $value);
+    echo '<a href="'.$value.'"> '.$link[0].' |</a>';
 }
 }
 
@@ -154,6 +155,48 @@ mail($this->to, $this->subject, $this->text, $this->from);
 }
 
 }// kraj klase mail
+
+
+// za sortiranje:
+class sortiranje
+{
+private $ulaz;
+private $kriterij;
+
+function __construct($k) {
+    $this->ulaz=$k;
+}
+
+function sortiraj(){
+
+switch ($this->ulaz) {
+        case '1':
+          $this->kriterij="dodano DESC";
+            break;
+        
+        case '2':
+           $this->kriterij="dodano ASC";
+            break;
+        case '3':
+               $this->kriterij='cijena ASC';
+                break;
+        case '4':
+                $this->kriterij='cijena DESC';
+                 break;
+        case '5':
+                $this->kriterij="naslov ASC";
+                 break;
+        case '6':
+             $this->kriterij='naslov DESC';
+             break;                              
+    }
+
+    return $this->kriterij;
+}
+
+
+
+}// kraj klase sortiranje
 
 
 ?>

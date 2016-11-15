@@ -1,0 +1,28 @@
+h2 {
+	text-align: center;
+}
+
+h4 {
+    text-align: center;
+}
+.prikaz{
+	float: left;
+	margin-right: 40px;
+	margin-bottom: 40px;
+	border:  4px groove #aaaaaa;
+}
+.knjiga {
+	float: left;
+	border:  4px groove #aaaaaa;
+}
+}
+
+#mala {
+	height: 150px;
+	width: 150px;
+}
+
+#velika {
+	height: 250px;
+	width: 250px;
+}

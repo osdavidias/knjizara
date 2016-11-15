@@ -9,7 +9,7 @@
 
 <?php
 session_start();
-include ('klasa.php');
+include ('klase.php');
 $z=new zaglavlje("REGISTRITAJTE SE:");
 $z->linkovi("index.php", "login.php");
 
